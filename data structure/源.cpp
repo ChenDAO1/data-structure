@@ -1260,3 +1260,760 @@
 //
 //}
 
+//2.C,next数组和fail函数的转化
+
+//#include<iostream>
+//#include<cstring>
+//
+//int main()
+//{
+//    int n;
+//    scanf("%d", &n);
+//    char* s = new char[1000001];
+//    scanf("%s", s);
+//    //printf("%d     88\n",strlen(s));
+//    long long* next = new long long[n + 10];
+//    //    long long *data=new long long[n+10];
+//    long long* f = new long long[1000001];
+//    //
+//    //
+//    long long j = 0, k = -1;
+//    next[0] = -1; f[0] = 0;
+//    //printf("-1\n");
+//    while (j < n - 1)
+//    {
+//        if (k == -1 || s[k] == s[j])
+//        {
+//            j++; k++; next[j] = k;
+//        }
+//        else k = next[k];
+//    }
+//    for (int i = 0; i < n - 1; i++)
+//    {
+//        f[i] = next[i + 1] - 1;
+//    }
+//
+//    if (s[n - 1] == s[f[n - 2] + 1])f[n - 1] = f[n - 2] + 1;
+//    else f[n - 1] = -1;
+//
+//
+//    for (int i = 0; i < n; i++)
+//    {
+//        long long jk = i;
+//        if (f[i] != -1)
+//        {
+//            jk = f[jk];
+//            if (f[jk] != -1)
+//            {
+//                jk = f[jk];
+//            }
+//            f[i] = jk;
+//        }
+//    }
+//    long long result = 0;
+//    for (int i = 0; i < n; i++)
+//    {
+//        if (f[i] != -1)result = result + i - f[i];
+//    }
+//    printf("%lld", result);
+//
+//}
+
+//0.D KMP算法基础
+
+//#include<iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	char* s = new char[10005];
+//	char* p = new char[10005];
+//	scanf_s("%s", s);
+//	scanf_s("%s", p);
+//
+//
+//
+//	int* next = new int[10005];
+//	int slength = strlen(s);
+//	int length = strlen(p);
+//	int k = -1; next[0] = -1;
+//	for (int i = 0; i < length-1; i++)
+//	{
+//		while (k >= 0 && p[i] != p[k])k = next[k];
+//		next[i + 1] = ++k;
+//	}
+//
+//	printf("%d %d %d \n", next[length / 4], next[length / 2], next[length * 3 / 4]);
+//
+//	k = 0;
+//	int con = 0;
+//	for (int i = 0; i < slength; i++)
+//	{
+//		if (s[i] == p[k]||k==-1)k++;
+//		else
+//		{
+//			k = next[k];
+//			i--;
+//		}
+//		//printf("%d   %d 55\n", k,i);
+//		if (k == length)
+//		{
+//			printf("%d", i - length+1); 
+//			con = 1;
+//			break;
+//		}
+//	}
+//	if (con == 0)printf("-1");
+//
+//
+//
+//}
+//
+//
+
+//0.E 二叉树得创建和遍历
+
+//class stack
+//{
+//private:
+//	int* cs = new int[200000];
+//	int top = -1;
+//public:
+//	void push(int n);
+//	int pop();
+//	bool empty();
+//};
+//void stack::push(int n)
+//{
+//	cs[++top] = n;
+//}
+//int stack::pop()
+//{
+//	if (top > 0)return cs[--top];
+//	else if (top == 0) {
+//		top--;
+//		return cs[0];
+//	}
+//}
+//bool stack::empty()
+//{
+//	if (top == -1)return 1;
+//}
+//#include<iostream>
+//using namespace std;
+//
+//struct node
+//{
+//	int data;
+//	node* left;
+//	node* right;
+//};
+//
+//
+//node* creat()
+//{
+//	int k;
+//	scanf_s("%d", &k);
+//	if (k == 0)return nullptr;
+//	node* head = new node;
+//	head->data = k;
+//	head->left = creat();
+//	head->right = creat();
+//	return head;
+//}
+//
+//void nodefirst(node* head)
+//{
+//	if (head != nullptr)
+//	{
+//		printf("%d ", head->data);
+//		nodefirst(head->left);
+//		nodefirst(head->right);
+//	}
+//}
+//void nodesecond(node* head)
+//{
+//	if (head == nullptr)return;
+//	
+//		nodefirst(head->left);
+//		printf("%d ", head->data);
+//		nodefirst(head->right);
+//	
+//}
+//void nodethird(node* head)
+//{
+//	if (head == nullptr)return;
+//	
+//		nodefirst(head->left);
+//		nodefirst(head->right);
+//		printf("%d ", head->data);
+//	
+//}
+//int main()
+//{
+//	node* head = new node;
+//	head = creat();
+//	//nodefirst(head); printf("\n");
+//	nodesecond(head); printf("\n");
+//	nodethird(head); printf("\n");
+//}
+
+//0.F 二叉树查找父结点
+
+//#include<iostream>
+//using namespace std;
+////#define scanf_s scanf
+//struct node
+//{
+//	int data;
+//	node* left;
+//	node* right;
+//};
+//
+//
+//node* creat()
+//{
+//	int k;
+//	scanf_s("%d", &k);
+//	if (k == 0)return nullptr;
+//	node* head = new node;
+//	head->data = k;
+//	head->left = creat();
+//	head->right = creat();
+//	return head;
+//}
+//
+//int find(node* head,int result)
+//{
+//	if (head != nullptr) {
+//		if (head->data == result)return 0;
+//		
+//		if (head->left != nullptr) {
+//			if (head->left->data == result)return head->data;
+//		}
+//		if (head->right != nullptr) {
+//			if (head->right->data == result)return head->data;
+//		}
+//
+//		int a=find(head->left, result);
+//		int b=find(head->right, result);
+//		if (a != 0)return a;
+//		else return b;
+//	}
+//	return 0;
+//}
+//
+//int main()
+//{
+//	node* head = new node;
+//	head = creat();
+//	int m;
+//	scanf_s("%d", &m);
+//	for (int i = 0; i < m; i++)
+//	{
+//		int n;
+//		scanf_s("%d", &n);
+//		printf("%d\n", find(head, n));
+//	}
+//}
+
+//0.G 二叉树删除子树
+
+//#include<iostream>
+//using namespace std;
+////#define scanf_s scanf
+//struct node
+//{
+//	int data;
+//	node* left;
+//	node* right;
+//};
+//
+//
+//node* creat()
+//{
+//	int k;
+//	scanf_s("%d", &k);
+//	if (k == 0)return nullptr;
+//	node* head = new node;
+//	head->data = k;
+//	head->left = creat();
+//	head->right = creat();
+//	return head;
+//}
+//
+//
+//void nodesecond(node* head)
+//{
+//	if (head != nullptr)
+//	{
+//		nodesecond(head->left);
+//		printf("%d ", head->data);
+//		nodesecond(head->right);
+//	}
+//}
+//
+//node * find(node* head, int result)     //查找result的父结点
+//{
+//	if (head != nullptr) {
+//		if (head->data == result)return nullptr;
+//
+//		if (head->left != nullptr) {
+//			if (head->left->data == result)return head;
+//		}
+//		if (head->right != nullptr) {
+//			if (head->right->data == result)return head;
+//		}
+//
+//		node * a = find(head->left, result);
+//		node * b = find(head->right, result);
+//		if (a != nullptr)return a;
+//		else return b;
+//	}
+//	return nullptr;
+//}
+//
+//void deletetree(node* head, int k)
+//{
+//	
+//	node* y = find(head, k);
+//	if (y == nullptr) {
+//		printf("0\n"); return;
+//	}
+//	if (y->left != nullptr) {
+//		if(y->left->data==k)y->left = nullptr;
+//	}
+//	if (y->right != nullptr) {
+//		if(y->right->data==k)y->right = nullptr;
+//	}
+//	nodesecond(head); printf("\n");
+//}
+//
+//int main()
+//{
+//	node* head = new node;
+//	head = creat();
+//	int m;
+//	scanf_s("%d", &m);
+//	for (int i = 0; i < m; i++)
+//	{
+//		int n;
+//		scanf_s("%d", &n);
+//		deletetree(head, n);
+//	}
+//}
+
+
+//PPT 0.G 存在问题，接受到函数处理后的指针依然为原值,啊啊啊啊啊啊啊啊啊啊啊啊啊，你个******，=都能给你写成==
+
+//#include<iostream>
+//using namespace std;
+////#define scanf_s scanf
+//struct node
+//{
+//	int data;
+//	node* left;
+//	node* right;
+//};
+//
+//
+//node* creat()
+//{
+//	int k;
+//	scanf_s("%d", &k);
+//	if (k == 0)return nullptr;
+//	node* head = new node;
+//	head->data = k;
+//	head->left = creat();
+//	head->right = creat();
+//	printf("%p\n", head);
+//	return head;
+//}
+//
+//void nodesecond(node* head)
+//{
+//	if (head != nullptr)
+//	{
+//		nodesecond(head->left);
+//		printf("%d ", head->data);
+//		nodesecond(head->right);
+//	}
+//}
+//
+//node* find(node* head, int result)
+//{
+//	if (head != nullptr) {
+//		if (head->data == result)return head;
+//
+//		node* a = new node;
+//		node* b = new node;
+//
+//		a = find(head->left, result);
+//		b = find(head->right, result);
+//		if (a != nullptr)return a;
+//		else return b;
+//	}
+//	else return nullptr;
+//}
+//
+//node* father(node* head, node* p)
+//{
+//	if (head == nullptr || p == nullptr || p == head)return nullptr;
+//	if (head->left == p || head->right == p)return head;
+//	node* a = new node;
+//	node* b = new node;
+//     a = father(head->left, p);
+//	 b = father(head->right, p);
+//	if (a != nullptr)return a;
+//	else return b;
+//}
+//
+//void deletetree(node* head, int k)
+//{
+//	node* y = find(head, k);
+//	//printf("%d     99\n", y->data);
+//	node* f = father(head, y);
+//	if (f != nullptr)
+//	{
+//		printf("%d     77\n",   f->data);
+//		printf("%d     99\n", y->data);
+//		if (f->left == y) { f->left = nullptr; }
+//		if (f->right == y) { f->right = nullptr; }
+//	}
+//	else printf("0\n");
+//	//printf("%d           test\n", f->right->data);
+//	printf("%p\n", head);
+//	//printf("%d           test\n", head->right->data);
+//	nodesecond(f); printf("\n");
+//}
+//
+//int main()
+//{
+//	node* head = new node;
+//	head = creat();
+//	printf("%p\n", head);
+//	int m;
+//	scanf_s("%d", &m);
+//	for (int i = 0; i < m; i++)
+//	{
+//		int n;
+//		scanf_s("%d", &n);
+//		deletetree(head, n);
+//	}
+//}
+
+//杂想，关于结构体指针
+
+//#include<iostream>
+//using namespace std;
+//
+//void make(int* pp)                   //但如果为结构体指针的话，head已指向了left的实际地址，所以对它更改能实际用于树
+//{
+//    pp = new int(66); //试图改变p指向的地址
+//}
+//int main()
+//{
+//    int a = 5;
+//    int* p = &a; //指针变量指向一个int类型的地址
+//    cout << "address:" << &a << "       value:" << a << endl;
+//    cout << "address:" << p << "       value:" << *p << endl;
+//    make(p);
+//    cout << "address:" << p << "       value:" << *p << endl;
+//}
+
+//#include<iostream>
+//using namespace std;
+//
+//struct node
+//{
+//	int data;
+//	node* left;
+//	node* right;
+//};
+//
+//node* test(node* head)
+//{
+//	printf("%p    kol\n", head->left);
+//	 head->left = nullptr;
+//	 printf("%p    data\n", head->left);
+//	return nullptr;
+//}
+//
+//int main()
+//{
+//	node* head = new node;
+//	node* p1 = new node;
+//	p1->data = 0;
+//	node* p2 = new node;
+//	head->left = p1; head->right = p2;
+//	printf("%p   test()bi\n", test(head));
+//	printf("%p    data\n", head->left);
+//}
+
+//3.A
+
+//#include<iostream>        //错出在right上
+//using namespace std;
+//
+//int con = -1;
+//struct node
+//{
+//	char data;
+//	node* left;
+//	node* right;
+//};
+//
+//node* creat(char* s1, char* s2,int n)
+//{
+//	printf("%d\n", n);
+//	if (n == 0)return nullptr;
+//	if (n == 1)
+//	{
+//		node* head = new node;
+//		head->left = nullptr;
+//		head->right = nullptr;
+//		head->data = s1[0];
+//		return head;
+//	}
+//
+//
+//	node* head = new node;
+//	int k = -1;
+//	for(int i=0;i<n;i++)
+//		if (s2[i] == s1[n - 1])
+//		{
+//			k = i; break;
+//		}
+//	if (k == -1) { con = 0; return nullptr; }
+//	char* s3 = new char[30];
+//	char* s4 = new char[30];
+//	char* s5 = new char[30];
+//	char* s6 = new char[30];
+//	strncpy(s3, s1, k);
+//	strncpy(s5, s2, k);
+//	strncpy(s4, s2 + k + 1, n - k - 1);
+//	strncpy(s6, s2 + k , n - k-1);
+//	cout << s3 << endl << s4 << endl << s5 << endl << s6 << endl;
+//	head->data = s1[n - 1];
+//	head->left = creat(s3, s5,k);
+//	if (k + 1 < n)head->right = creat(s6, s4, n - k - 1);
+//	else head->right = nullptr;
+//	return head;
+//}
+//
+//void nodefirst(node* head)
+//{
+//	if (head != nullptr)
+//	{
+//		printf("%c ", head->data);
+//		nodefirst(head->left);
+//		nodefirst(head->right);
+//	}
+//}
+//
+//int main()
+//{
+//	char s1[30];//后
+//	char s2[30];//中
+//	cin >> s1 >> s2;
+//	int n = strlen(s1);
+//	node* head = creat(s1, s2,n);
+//	if (con == -1)nodefirst(head);
+//	else printf("INVAILD");
+//}
+
+
+//3.B,找二叉树树中两个点之间的最短路径
+
+//#include<iostream>
+//#include<cstring>
+//#include<stdio.h>
+//using namespace std;
+//
+//#define scanf scanf_s
+//
+//struct node
+//{
+//    int data;
+//    node* father;
+//    node* left;
+//    node* right;
+//};
+//
+//node* find_(node* head, int result)                                                          //查找result的父结点
+//{
+//    if (head != nullptr) {
+//        if (head->data == result)return nullptr;
+//
+//        if (head->left != nullptr) {
+//            if (head->left->data == result)return head;
+//        }
+//        if (head->right != nullptr) {
+//            if (head->right->data == result)return head;
+//        }
+//
+//        node* a = find_(head->left, result);
+//        node* b = find_(head->right, result);
+//        if (a != nullptr)return a;
+//        else return b;
+//    }
+//    return nullptr;
+//}
+//
+//
+//node* creat()
+//{
+//    int k;
+//    scanf("%d", &k);
+//    if (k == 0)return nullptr;
+//    node* head = new node;
+//    node* head2 = new node;
+//    node* head3 = new node;
+//    head->data = k;
+//
+//    head2 = creat();
+//    head3 = creat();
+//    head->left = head2;
+//    head->right = head3;
+//
+//    if (head2 != nullptr)head2->father = head;
+//    if (head3 != nullptr)head3->father = head;
+//    return head;
+//}
+//
+//int main()
+//{
+//    node* head = creat();
+//    head->father = nullptr;
+//    int sxd = 0;
+//    scanf("%d", &sxd);
+//    while (sxd != 0) {
+//        int n, m;
+//        scanf("%d%d", &n, &m);
+//        int data1[20000] = { 0 }, data2[20000] = { 0 };
+//        node* p = find_(head, n);
+//        node* q = find_(head, m);
+//
+//        int result = 0;
+//        data1[0] = n;
+//        int totall1 = 1;
+//        while (p != nullptr)
+//        {
+//            data1[totall1++] = p->data;
+//            p = p->father;
+//        }
+//        data2[0] = m;
+//        int totall2 = 1;
+//        while (q != nullptr)
+//        {
+//            data2[totall2++] = q->data;
+//            q = q->father;
+//        }
+//        totall1--, totall2--;
+//
+//        int bian = 1;
+//        int cs = 0;
+//        while (data1[totall1-cs] == data2[totall2-cs]&&totall1>=cs&&totall2>=cs)cs++;
+//        cs--;
+//        if (data1[totall1 - cs] == data2[totall2 - cs]&&(totall2-cs==0))bian = 0;
+//        result = totall1 + totall2 + 2 - (cs + 1) * 2;
+//        //cout << totall1 << " " << totall2 << " " << cs << " " << "test"<<endl;
+//
+//        cout << result << endl;
+//        for (int y = 0; y <= totall1-cs; y++)cout << data1[y] << " ";
+//        if (!bian) { for (int y = 0; y < totall2 - cs; y++)cout << data2[y] << " "; }
+//        else
+//        {
+//            for (int y = totall2 - cs - 1; y >= 0; y--)cout << data2[y] << " ";
+//        }
+//        cout << endl;
+//        sxd--;
+//    }
+//
+//
+//}
+
+
+//编写算法求给定二叉树中一条最长的路径，并输出此路径上各结点的值。
+
+//#include<iostream>
+//using namespace std;
+//struct node
+//{
+//	int data;
+//	node* left;
+//	node* right;
+//};
+//
+//int pathlength(node* head)
+//{
+//	if (head == nullptr)return 0;
+//	if (head->left == nullptr && head->right == nullptr)return 1;
+//	int a = pathlength(head->left);
+//	int b = pathlength(head->right);
+//	return (a > b ? a : b) + 1;
+//}
+//
+//void printpath(node* head)
+//{
+//	if (head == nullptr)return;
+//	cout << head->data << " ";
+//	int a = pathlength(head->left);
+//	int b = pathlength(head->right);
+//	if (a >= b)printpath(head->left);
+//	else printpath(head->right);
+//}
+
+//判断两颗二叉树是否相似（有相同结构）
+
+//#include<iostream>
+//using namespace std;
+//struct node
+//{
+//	int data;
+//	node* left;
+//	node* right;
+//};
+//int similar(node* p, node* q)
+//{
+//	if (p == nullptr && q == nullptr)return 1;
+//	if (p == nullptr && q != nullptr || p != nullptr && q == nullptr)return 0;
+//	int a = similar(p->left, q->left);
+//	int b = similar(p->right, q->right);
+//	if (a == 0 || b == 0)return 0;
+//}
+
+//对左兄弟-右儿子链接的树，编写算法计算树的深度
+
+//#include<iostream>
+//using namespace std;
+//struct node
+//{
+//	int data;
+//	node* child;
+//	node* brother;
+//};
+//
+//int deepth(node* head)
+//{
+//	if (head == nullptr)return 0;
+//	int a = deepth(head->child) + 1;
+//	int b = deepth(head->brother) + 1;
+//	if (a > b)return a;
+//}
+
+// 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
